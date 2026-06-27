@@ -6,142 +6,164 @@ import { ArrowRight } from "@/components/ui/Section";
 import { CtaBand } from "@/components/sections/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Technology — Redefining Spine Surgery",
+  title: "Technology",
   description:
-    "Explore the superiority of Silicon Nitride in spinal implants: active osteogenesis, natural antibacterial protection, and superior imaging clarity.",
+    "Explore the Superiority of Silicon Nitride in Spinal Implants — Silicon Nitride: Redefining Spine Surgery Technology.",
 };
 
-const benefits = [
+const keyBenefits = [
   {
     title: "Active Osteogenesis",
     body: "Experience continuous bone growth that surpasses traditional materials like PEEK and titanium, leading to enhanced healing and stronger fusion.",
   },
   {
     title: "Natural Antibacterial Protection",
-    body: "Benefit from the inherent antibacterial properties of Silicon Nitride, reducing the risk of infection and promoting a healthier recovery.",
+    body: "Benefit from the inherent antibacterial properties of silicon nitride, reducing the risk of infection and promoting a healthier recovery.",
   },
   {
     title: "Superior Imaging Clarity",
-    body: "Utilize the imaging-friendly nature of Silicon Nitride to visualize implant integration with exceptional precision and confident follow-up care.",
+    body: "Utilize the imaging-friendly nature of silicon nitride to visualize implant integration with exceptional precision, ensuring optimal surgical outcomes and confident follow-up care.",
   },
 ];
 
 const advanced = [
-  "Unmatched Osseointegration",
-  "Inherent Antibacterial Properties",
-  "Sharpened Imaging",
-  "Superior Strength",
+  {
+    title: "Unmatched Osseointegration",
+    body: "Silicon Nitride stands alone in its ability to stimulate bone growth and ensure successful fusion, regardless of pre-existing bone conditions.",
+  },
+  {
+    title: "Inherent Antibacterial Properties",
+    body: "Leverage the antimicrobial power of Silicon Nitride to mitigate post-surgical infection risk and improve patient outcomes.",
+  },
+  {
+    title: "Sharpened Imaging",
+    body: "Enjoy sharper, artifact-free images with Silicon Nitride implants, allowing for more accurate assessments and follow-ups.",
+  },
+  {
+    title: "Superior Strength",
+    body: "Upgrade to Silicon Nitride and experience superior mechanical strength and reliability that surpasses traditional materials like PEEK and Titanium.",
+  },
 ];
 
 const nitroFeatures = [
-  "Enhanced Osteogenic Response",
-  "Bacteriostatic Properties",
-  "Artifact-Free Imaging",
-  "Precisely Sized Axial Pores",
-  "Macro-Texturing",
-  "Integration Options & Configurations",
+  {
+    title: "Enhanced Osteogenic Response",
+    body: "NITRO implants have demonstrated superior protein absorption and increased osseointegration compared to other biomaterials.",
+  },
+  {
+    title: "Bacteriostatic Properties",
+    body: "Silicon nitride possesses unique bacteriostatic properties, inhibiting the growth of bacteria.",
+  },
+  {
+    title: "Artifact-Free Imaging",
+    body: "The biomaterial used in NITRO allows for artifact-free CT Scan imaging, enabling clear visualization of the implant and surrounding tissues.",
+  },
+  {
+    title: "Precisely Sized Axial Pores",
+    body: "The NITRO interbody fusion family incorporates precisely sized axial pores that promote capillary action and a pathway for bony through-growth.",
+  },
+  {
+    title: "Macro-Texturing",
+    body: "Macro-texturing provides even greater surface area throughout the implant, increasing bony contact and enhancing innate bacteriostatic properties.",
+  },
+  {
+    title: "Integration Options and Configurations",
+    body: "The NITRO interbody fusion family offers a robust and comprehensive variety of standalone integration options, lordotic offerings, and size configurations",
+  },
 ];
 
 export default function TechnologyPage() {
   return (
     <>
       <PageHero
-        eyebrow="Technology"
-        title={
-          <>
-            Discover a biomaterial that&apos;s{" "}
-            <span className="text-amber">redefining spine surgery.</span>
-          </>
-        }
-        intro="Explore the superiority of Silicon Nitride in spinal implants — where biology, strength, and imaging come together in a single material."
+        eyebrow="Discover a Biomaterial That's"
+        title="Explore the Superiority of Silicon Nitride in Spinal Implants"
+        intro="Silicon is the leading choice for holistic care in spinal fusion patients due to its unparalleled advantages. It actively promotes bone growth and healing, possesses inherent antibacterial properties to reduce complications, and offers friendly imaging properties for precise monitoring. CTL Amedica is empowering the use of this revolutionary biomaterial to create implants that are not only more effective, but also safer and more reliable for patients."
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Technology", href: "/technology" },
         ]}
       />
 
-      {/* Three benefits */}
+      {/* Key Benefits */}
       <Section tone="white">
         <SectionHeading
-          eyebrow="The Superiority of Silicon Nitride"
-          title="Silicon Nitride: redefining spine surgery technology"
+          eyebrow="Silicon Nitride: Redefining Spine Surgery Technology"
+          title="Key Benefits"
         />
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {benefits.map((b, i) => (
-            <div
-              key={b.title}
-              className="relative rounded-2xl border border-ink/8 bg-cream/60 p-8"
-            >
-              <span className="font-display text-5xl font-bold text-amber/30">
-                0{i + 1}
-              </span>
+          {keyBenefits.map((b, i) => (
+            <div key={b.title} className="rounded-2xl border border-ink/8 bg-cream/60 p-8">
+              <span className="font-display text-5xl font-bold text-amber/30">0{i + 1}</span>
               <h3 className="mt-4 text-xl font-semibold text-ink">{b.title}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-stone">{b.body}</p>
             </div>
           ))}
         </div>
+        <Button href="/silicon-nitride" className="mt-10">
+          Learn More
+          <ArrowRight />
+        </Button>
       </Section>
 
-      {/* Advanced tech band */}
+      {/* Advanced tech */}
       <Section tone="ink">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div>
-            <SectionHeading
-              eyebrow="Advanced Silicon Nitride Technology"
-              title="Four advantages, one material"
-              tone="white"
-            />
-            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-              {advanced.map((a) => (
-                <li
-                  key={a}
-                  className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5"
-                >
-                  <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-amber/20 text-amber">
-                    <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none">
-                      <path d="M2.5 6.5 5 9l4.5-5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                  <span className="text-sm font-medium text-white">{a}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="relative aspect-square overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03]">
-            <div className="absolute inset-0 flex items-center justify-center text-center">
-              <div>
-                <p className="font-display text-7xl font-bold text-amber">Si₃N₄</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.3em] text-white/40">
-                  Bioactive ceramic
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* NITRO family */}
-      <Section tone="cream">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading
-            eyebrow="The NITRO Family"
-            title="The next generation of Silicon Nitride interbody fusion"
-            intro="NITRO advances Si₃N₄ with precisely engineered porosity and texture for a true pathway to bony through-growth."
-          />
-          <Button href="/nitro" variant="secondary">
-            Explore NITRO
-            <ArrowRight />
-          </Button>
-        </div>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {nitroFeatures.map((f) => (
-            <div
-              key={f}
-              className="rounded-2xl border border-ink/8 bg-white p-6 shadow-card"
-            >
-              <h3 className="font-display text-base font-semibold text-ink">{f}</h3>
+        <SectionHeading
+          eyebrow="Silicon Nitride: The Cornerstone of Modern Spinal Technology"
+          title="Advanced Silicon Nitride Technology"
+          tone="white"
+        />
+        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          {advanced.map((a) => (
+            <div key={a.title} className="rounded-2xl border border-white/10 bg-white/[0.04] p-7">
+              <h3 className="text-xl font-semibold text-amber">{a.title}</h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-white/65">{a.body}</p>
             </div>
           ))}
+        </div>
+      </Section>
+
+      {/* NITRO Family */}
+      <Section tone="cream">
+        <div className="max-w-2xl">
+          <span className="eyebrow">In the race to achieve interbody fusion, material matters.</span>
+          <h2 className="mt-3 text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+            Introducing the NITRO Family
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-stone">
+            Discover the precision-engineered NITRO series, crafted from advanced
+            silicon nitride to enhance patient outcomes. These implants leverage
+            exceptional properties to provide superior technological advancements
+            in patient care.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {nitroFeatures.map((f) => (
+            <div key={f.title} className="rounded-2xl border border-ink/8 bg-white p-6 shadow-card">
+              <h3 className="font-display text-base font-semibold text-ink">{f.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-stone">{f.body}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-6 text-sm italic text-stone-light">
+          Standalone integration is pending market launch.
+        </p>
+
+        <div className="mt-14 rounded-3xl bg-ink p-8 sm:p-12">
+          <span className="eyebrow">Discover the Power of NITRO</span>
+          <h3 className="mt-3 max-w-2xl text-2xl font-semibold leading-tight text-white sm:text-3xl">
+            Enhancing Spinal Health with Advanced NITRO Implants
+          </h3>
+          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-white/70">
+            Next-generation NITRO implants harness all the innate advantages of
+            silicon nitride, in combination with innovative enhancements for an
+            even greater osteogenic and bacteriostatic response.
+          </p>
+          <Button href="/nitro" className="mt-7">
+            Explore NITRO Products
+            <ArrowRight />
+          </Button>
         </div>
       </Section>
 

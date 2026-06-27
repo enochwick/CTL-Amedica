@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/Button";
 
 export function CtaBand({
-  eyebrow = "Get in touch",
-  title = "Experience the future of spine care",
-  intro = "Request a demo of our NITRO implants or talk with our team about bringing Silicon Nitride to your OR.",
-  primary = { label: "Schedule Your Demo", href: "/contact" },
+  title = "Discover Cutting-Edge Spinal Solutions",
+  intro = "Ready to elevate your practice with our innovative spinal products? Contact us today to request a demo or consultation. Our expert team is here to assist and guide you through the benefits and uses of our technology, helping you achieve the best outcomes for your patients.",
+  primary = { label: "Request a Demo", href: "/contact-us" },
   secondary = { label: "Explore Products", href: "/products" },
 }: {
   eyebrow?: string;
@@ -20,8 +19,7 @@ export function CtaBand({
           <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-amber/20 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 -left-10 h-72 w-72 rounded-full bg-gold/10 blur-3xl" />
           <div className="relative max-w-2xl">
-            <span className="eyebrow">{eyebrow}</span>
-            <h2 className="mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">
+            <h2 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
               {title}
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-white/70">{intro}</p>
@@ -29,7 +27,12 @@ export function CtaBand({
               <Button href={primary.href} size="lg">
                 {primary.label}
               </Button>
-              <Button href={secondary.href} variant="ghost" size="lg" className="text-white ring-white/25 hover:bg-white/10 hover:ring-white/50">
+              <Button
+                href={secondary.href}
+                variant="ghost"
+                size="lg"
+                className="text-white ring-white/25 hover:bg-white/10 hover:ring-white/50"
+              >
                 {secondary.label}
               </Button>
             </div>

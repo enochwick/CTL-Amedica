@@ -8,21 +8,19 @@ import { cn } from "@/lib/utils";
 import {
   products,
   categoryMeta,
+  categoryOrder,
   type ProductCategory,
 } from "@/data/products";
 
 export const metadata: Metadata = {
-  title: "Products — Spinal Implant Portfolio",
+  title: "Products",
   description:
-    "Explore CTL Amedica's comprehensive portfolio of cervical and lumbar fixation and fusion devices, including Silicon Nitride and NITRO implants.",
+    "CTL Amedica's full portfolio of spinal fusion and fixation products — Cervical Fixation, Cervical Fusion, Lumbar Fixation, and Lumbar Fusion.",
 };
 
 const filters: { key: ProductCategory | "all"; label: string }[] = [
   { key: "all", label: "All Products" },
-  { key: "cervical-fixation", label: "Cervical Fixation" },
-  { key: "cervical-fusion", label: "Cervical Fusion" },
-  { key: "lumbar-fixation", label: "Lumbar Fixation" },
-  { key: "lumbar-fusion", label: "Lumbar Fusion" },
+  ...categoryOrder.map((k) => ({ key: k, label: categoryMeta[k].label })),
 ];
 
 export default function ProductsPage({
@@ -30,27 +28,35 @@ export default function ProductsPage({
 }: {
   searchParams: { category?: string };
 }) {
-  const active = (searchParams.category as ProductCategory) || "all";
-  const isValid = filters.some((f) => f.key === active);
-  const current = isValid ? active : "all";
+  const requested = searchParams.category as ProductCategory | undefined;
+  const current = requested && categoryMeta[requested] ? requested : "all";
 
-  const filtered =
+  const grouped =
     current === "all"
-      ? products
-      : products.filter((p) => p.category === current);
+      ? categoryOrder.map((key) => ({
+          key,
+          label: categoryMeta[key].label,
+          items: products.filter((p) => p.category === key),
+        }))
+      : [
+          {
+            key: current,
+            label: categoryMeta[current].label,
+            items: products.filter((p) => p.category === current),
+          },
+        ];
 
-  const activeMeta =
-    current !== "all" ? categoryMeta[current as ProductCategory] : null;
+  const total = grouped.reduce((n, g) => n + g.items.length, 0);
 
   return (
     <>
       <PageHero
         eyebrow="The Portfolio"
-        title="Discover cutting-edge spinal solutions"
-        intro="A comprehensive portfolio across the cervical and lumbar spine — named for the artists who reimagined what was possible. Idealists, mathematicians, engineers, inventors, and designers."
+        title="Spinal Fusion & Fixation Products"
+        intro="Our full portfolio of spinal fusion and fixation products incorporates bone growth material and innovative features designed to enhance patient outcomes. Named after renowned artists, our systems epitomize the artistry in spine care."
         breadcrumb={[
           { label: "Home", href: "/" },
-          { label: "Products", href: "/products" },
+          { label: "Product", href: "/products" },
         ]}
       />
 
@@ -73,20 +79,24 @@ export default function ProductsPage({
           ))}
         </div>
 
-        {activeMeta && (
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-stone">
-            {activeMeta.blurb}
-          </p>
-        )}
-
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((p) => (
-            <ProductCard key={p.slug} product={p} />
+        <div className="mt-12 space-y-16">
+          {grouped.map((group) => (
+            <div key={group.key}>
+              <div className="flex items-center gap-4">
+                <h2 className="font-display text-2xl font-semibold text-ink">{group.label}</h2>
+                <span className="text-sm text-stone-light">{group.items.length}</span>
+              </div>
+              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {group.items.map((p) => (
+                  <ProductCard key={p.slug} product={p} />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
 
-        <p className="mt-10 text-sm text-stone-light">
-          Showing {filtered.length} {filtered.length === 1 ? "device" : "devices"}
+        <p className="mt-12 text-sm text-stone-light">
+          Showing {total} {total === 1 ? "device" : "devices"}
         </p>
       </Section>
 

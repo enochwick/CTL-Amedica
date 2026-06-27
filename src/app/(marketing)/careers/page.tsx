@@ -1,118 +1,115 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
-import { Section, SectionHeading, ArrowRight } from "@/components/ui/Section";
-import { Button } from "@/components/ui/Button";
+import { Section, SectionHeading } from "@/components/ui/Section";
 import { values } from "@/data/team";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Careers — Join CTL Amedica",
-  description:
-    "Join a team of accomplished professionals dedicated to enhancing surgeon experience and patient care. Explore careers at CTL Amedica.",
+  title: "Career",
+  description: "Drive Your Career Forward — Explore Our Opportunities at CTL Amedica.",
 };
 
-const openings = [
-  {
-    title: "CNC Machine Programmer",
-    location: "Carrollton, TX",
-    type: "Full-time · Manufacturing",
-  },
-  {
-    title: "Spatial Sales Associate",
-    location: "Field · US",
-    type: "Full-time · Sales",
-  },
-  {
-    title: "R&D Engineer, Spine",
-    location: "Blue Bell, PA",
-    type: "Full-time · Engineering",
-  },
-  {
-    title: "Quality Systems Specialist",
-    location: "Carrollton, TX",
-    type: "Full-time · Quality",
-  },
+const employmentTypes = [
+  "Contract",
+  "Contract - Remote",
+  "Freelance",
+  "Full Time",
+  "Internship",
+  "Part Time",
+  "Remote",
+  "Temporary",
 ];
 
 export default function CareersPage() {
   return (
     <>
       <PageHero
-        eyebrow="Careers"
-        title={
-          <>
-            Build remarkable things with{" "}
-            <span className="text-amber">remarkable people.</span>
-          </>
-        }
-        intro="We recruit accomplished professionals and empower them to innovate. If you share our passion for spine care, we'd love to meet you."
+        eyebrow="Career"
+        title="Drive Your Career Forward"
+        intro="CTL Amedica is a forward-thinking medical device design, development, and manufacturing company."
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Careers", href: "/careers" },
         ]}
       />
 
-      {/* Why work here */}
+      {/* People Power Passion */}
       <Section tone="white">
-        <SectionHeading
-          eyebrow="People · Power · Passion"
-          title="Why CTL Amedica"
-        />
+        <SectionHeading eyebrow="People · Power · Passion" title="Why CTL Amedica" />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {values.map((v) => (
-            <div
-              key={v.title}
-              className="rounded-2xl border border-ink/8 bg-cream/60 p-8"
-            >
-              <h3 className="font-display text-xl font-semibold text-ink">
-                {v.title}
-              </h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-stone">
-                {v.body}
-              </p>
+            <div key={v.title} className="rounded-2xl border border-ink/8 bg-cream/60 p-8">
+              <h3 className="font-display text-xl font-semibold text-ink">{v.title}</h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-stone">{v.body}</p>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* Openings */}
+      {/* Explore Our Opportunities */}
       <Section tone="cream">
-        <SectionHeading
-          eyebrow="Open Positions"
-          title="Current openings"
-          intro="Don't see the right fit? We're always glad to hear from talented people."
-        />
-        <div className="mt-10 divide-y divide-ink/8 overflow-hidden rounded-2xl border border-ink/8 bg-white">
-          {openings.map((job) => (
-            <div
-              key={job.title}
-              className="group flex flex-col gap-3 p-6 transition-colors hover:bg-cream/50 sm:flex-row sm:items-center sm:justify-between"
-            >
-              <div>
-                <h3 className="font-display text-lg font-semibold text-ink">
-                  {job.title}
-                </h3>
-                <p className="mt-1 text-sm text-stone">
-                  {job.location} · {job.type}
-                </p>
-              </div>
-              <Button href="/contact" variant="ghost" size="sm">
-                Apply
-                <ArrowRight />
-              </Button>
+        <SectionHeading eyebrow="Explore Our Opportunities" title="Find your role" />
+
+        <div className="mt-10 rounded-3xl border border-ink/8 bg-white p-6 shadow-card sm:p-8">
+          {/* Search */}
+          <div className="grid gap-4 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-ink">Keywords</label>
+              <input
+                type="text"
+                placeholder="Job title, skill…"
+                className="h-12 w-full rounded-xl border border-ink/15 bg-white px-4 text-sm outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/30"
+              />
             </div>
-          ))}
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-ink">Location</label>
+              <input
+                type="text"
+                placeholder="City, state…"
+                className="h-12 w-full rounded-xl border border-ink/15 bg-white px-4 text-sm outline-none transition-colors focus:border-amber focus:ring-2 focus:ring-amber/30"
+              />
+            </div>
+            <button className="h-12 rounded-full bg-amber px-7 font-display text-sm font-medium text-ink transition-colors hover:bg-gold">
+              Search
+            </button>
+          </div>
+
+          <label className="mt-4 flex items-center gap-2 text-sm text-slate">
+            <input type="checkbox" className="h-4 w-4 rounded border-ink/30 text-amber focus:ring-amber/40" />
+            Remote positions only
+          </label>
+
+          {/* Employment type filters */}
+          <div className="mt-6 border-t border-ink/8 pt-6">
+            <p className="text-xs font-semibold uppercase tracking-wider text-stone-light">
+              Employment type
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {employmentTypes.map((t) => (
+                <span
+                  key={t}
+                  className="cursor-pointer rounded-full border border-ink/12 bg-cream px-3.5 py-1.5 text-sm text-slate transition-colors hover:border-amber hover:text-ink"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className="mt-8 text-sm text-stone">
-          To apply, email your resume to{" "}
-          <a
-            href={`mailto:${site.email}`}
-            className="font-medium text-ink link-underline"
-          >
-            {site.email}
-          </a>
-          .
+        {/* Empty state */}
+        <div className="mt-8 rounded-2xl border border-dashed border-ink/15 bg-white/60 p-10 text-center">
+          <p className="text-[15px] text-stone">
+            Don&apos;t see the right role? We&apos;re always glad to hear from
+            talented people. Email{" "}
+            <a href={`mailto:${site.email}`} className="font-medium text-ink link-underline">
+              {site.email}
+            </a>
+            .
+          </p>
+          <button className="mt-6 rounded-full border border-ink/15 px-6 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink/40 hover:bg-ink/5">
+            Load more listings
+          </button>
         </div>
       </Section>
     </>

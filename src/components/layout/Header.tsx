@@ -4,13 +4,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { mainNav } from "@/data/site";
+import { products, categoryMeta, categoryOrder } from "@/data/products";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
+const productGroups = categoryOrder.map((key) => ({
+  key,
+  meta: categoryMeta[key],
+  items: products.filter((p) => p.category === key),
+}));
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [mega, setMega] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const [mobileGroup, setMobileGroup] = useState<string | null>("products");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -25,9 +33,10 @@ export function Header() {
 
   return (
     <header
+      onMouseLeave={() => setMega(false)}
       className={cn(
         "sticky top-0 z-50 w-full transition-colors duration-300",
-        scrolled
+        scrolled || mega
           ? "bg-white/95 backdrop-blur shadow-[0_1px_0_rgba(30,24,16,0.08)]"
           : "bg-white",
       )}
@@ -46,40 +55,60 @@ export function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-1 lg:flex">
-          {mainNav.map((item) => (
-            <div key={item.label} className="group relative">
-              <Link
-                href={item.href}
-                className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-slate transition-colors hover:text-ink"
+          {mainNav.map((item) => {
+            if ("mega" in item && item.mega) {
+              return (
+                <button
+                  key={item.label}
+                  onMouseEnter={() => setMega(true)}
+                  onClick={() => setMega((m) => !m)}
+                  className={cn(
+                    "flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                    mega ? "text-ink" : "text-slate hover:text-ink",
+                  )}
+                  aria-expanded={mega}
+                >
+                  {item.label}
+                  <Chevron open={mega} />
+                </button>
+              );
+            }
+            const children = "children" in item ? item.children : undefined;
+            return (
+              <div
+                key={item.label}
+                className="group relative"
+                onMouseEnter={() => setMega(false)}
               >
-                {item.label}
-                {item.children && (
-                  <svg viewBox="0 0 12 12" className="h-2.5 w-2.5 text-stone-light transition-transform group-hover:rotate-180" fill="none">
-                    <path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                )}
-              </Link>
-              {item.children && (
-                <div className="invisible absolute left-0 top-full min-w-[230px] translate-y-1 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                  <div className="overflow-hidden rounded-2xl border border-ink/5 bg-white p-2 shadow-card">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.label}
-                        href={child.href}
-                        className="block rounded-xl px-3.5 py-2.5 text-sm text-slate transition-colors hover:bg-cream hover:text-ink"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                <Link
+                  href={item.href}
+                  className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-slate transition-colors hover:text-ink"
+                >
+                  {item.label}
+                  {children && <Chevron />}
+                </Link>
+                {children && (
+                  <div className="invisible absolute left-0 top-full min-w-[200px] translate-y-1 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                    <div className="overflow-hidden rounded-2xl border border-ink/5 bg-white p-2 shadow-card">
+                      {children.map((c) => (
+                        <Link
+                          key={c.label}
+                          href={c.href}
+                          className="block rounded-xl px-3.5 py-2.5 text-sm text-slate transition-colors hover:bg-cream hover:text-ink"
+                        >
+                          {c.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
+                )}
+              </div>
+            );
+          })}
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Button href="/contact" size="sm">
+          <Button href="/contact-us" size="sm">
             Contact Us
           </Button>
         </div>
@@ -99,58 +128,177 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* ─── Desktop MEGA MENU ─── */}
+      <div
+        onMouseEnter={() => setMega(true)}
+        className={cn(
+          "absolute inset-x-0 top-full hidden origin-top border-t border-ink/5 bg-white shadow-[0_24px_48px_-12px_rgba(30,24,16,0.18)] transition-all duration-200 lg:block",
+          mega ? "visible opacity-100" : "pointer-events-none invisible -translate-y-2 opacity-0",
+        )}
+      >
+        <div className="container-page grid grid-cols-[repeat(4,1fr)_0.9fr] gap-8 py-10">
+          {productGroups.map((group) => (
+            <div key={group.key}>
+              <Link
+                href={`/products?category=${group.key}`}
+                onClick={() => setMega(false)}
+                className="group flex items-baseline justify-between border-b border-ink/10 pb-2.5"
+              >
+                <span className="font-display text-sm font-semibold uppercase tracking-wide text-ink">
+                  {group.meta.label}
+                </span>
+                <span className="text-[10px] font-medium uppercase tracking-widest text-amber opacity-0 transition-opacity group-hover:opacity-100">
+                  View
+                </span>
+              </Link>
+              <ul className="mt-3 space-y-0.5">
+                {group.items.map((p) => (
+                  <li key={p.slug}>
+                    <Link
+                      href={`/products/${p.slug}`}
+                      onClick={() => setMega(false)}
+                      className="group flex items-center gap-2 rounded-lg px-2 py-1.5 -mx-2 text-[13.5px] text-slate transition-colors hover:bg-cream hover:text-ink"
+                    >
+                      <span className="flex-1">{p.menuLabel}</span>
+                      {p.nitro && (
+                        <span className="rounded bg-ink px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-amber">
+                          NITRO
+                        </span>
+                      )}
+                      {!p.nitro && p.material === "Silicon Nitride" && (
+                        <span className="text-[10px] font-semibold text-amber/80">Si₃N₄</span>
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* Feature card */}
+          <Link
+            href="/nitro"
+            onClick={() => setMega(false)}
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-ink p-6 text-white"
+          >
+            <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-amber/25 blur-2xl transition-opacity group-hover:opacity-80" />
+            <div className="relative">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber">
+                Exclusive Material
+              </span>
+              <p className="mt-2 font-display text-2xl font-semibold leading-tight">
+                The NITRO Family
+              </p>
+              <p className="mt-2 text-sm text-white/65">
+                Silicon Nitride interbody fusion. In the race to achieve interbody fusion, material matters.
+              </p>
+            </div>
+            <span className="relative mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-amber">
+              Explore NITRO
+              <svg viewBox="0 0 20 20" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none">
+                <path d="M4 10h12m0 0-5-5m5 5-5 5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+          </Link>
+        </div>
+        <div className="border-t border-ink/5 bg-cream/60">
+          <div className="container-page flex items-center justify-between py-3 text-sm">
+            <span className="text-stone">Browse the complete spinal portfolio</span>
+            <Link
+              href="/products"
+              onClick={() => setMega(false)}
+              className="font-medium text-ink link-underline"
+            >
+              View all products →
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* ─── Mobile menu ─── */}
       <div
         className={cn(
-          "fixed inset-0 top-20 z-40 overflow-y-auto bg-white px-5 pb-10 pt-4 transition-opacity duration-200 lg:hidden",
+          "fixed inset-0 top-20 z-40 overflow-y-auto bg-white px-5 pb-16 pt-4 transition-opacity duration-200 lg:hidden",
           mobileOpen ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >
         <nav className="flex flex-col divide-y divide-ink/5">
-          {mainNav.map((item) => (
-            <div key={item.label} className="py-1">
-              {item.children ? (
-                <>
-                  <button
-                    onClick={() => setOpenGroup((g) => (g === item.label ? null : item.label))}
-                    className="flex w-full items-center justify-between py-3 text-left text-lg font-medium text-ink"
-                  >
-                    {item.label}
-                    <svg viewBox="0 0 12 12" className={cn("h-3 w-3 text-stone transition-transform", openGroup === item.label && "rotate-180")} fill="none">
-                      <path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
-                  {openGroup === item.label && (
-                    <div className="pb-2 pl-3">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          href={child.href}
-                          onClick={() => setMobileOpen(false)}
-                          className="block py-2 text-base text-slate"
-                        >
-                          {child.label}
-                        </Link>
+          {/* Product accordion */}
+          <div className="py-1">
+            <button
+              onClick={() => setMobileGroup((g) => (g === "products" ? null : "products"))}
+              className="flex w-full items-center justify-between py-3 text-left text-lg font-medium text-ink"
+            >
+              Product
+              <Chevron open={mobileGroup === "products"} />
+            </button>
+            {mobileGroup === "products" && (
+              <div className="space-y-5 pb-4">
+                {productGroups.map((group) => (
+                  <div key={group.key}>
+                    <Link
+                      href={`/products?category=${group.key}`}
+                      onClick={() => setMobileOpen(false)}
+                      className="text-xs font-semibold uppercase tracking-widest text-amber"
+                    >
+                      {group.meta.label}
+                    </Link>
+                    <ul className="mt-1.5 grid grid-cols-2 gap-x-4 gap-y-1">
+                      {group.items.map((p) => (
+                        <li key={p.slug}>
+                          <Link
+                            href={`/products/${p.slug}`}
+                            onClick={() => setMobileOpen(false)}
+                            className="block py-1 text-sm text-slate"
+                          >
+                            {p.menuLabel}
+                          </Link>
+                        </li>
                       ))}
-                    </div>
-                  )}
-                </>
-              ) : (
+                    </ul>
+                  </div>
+                ))}
                 <Link
-                  href={item.href}
+                  href="/products"
                   onClick={() => setMobileOpen(false)}
-                  className="block py-3 text-lg font-medium text-ink"
+                  className="inline-block text-sm font-medium text-ink link-underline"
                 >
-                  {item.label}
+                  View all products →
                 </Link>
-              )}
-            </div>
-          ))}
+              </div>
+            )}
+          </div>
+
+          {/* Other items */}
+          {mainNav
+            .filter((i) => !("mega" in i && i.mega))
+            .map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className="block py-3 text-lg font-medium text-ink"
+              >
+                {item.label}
+              </Link>
+            ))}
         </nav>
-        <Button href="/contact" className="mt-6 w-full" size="lg">
+        <Button href="/contact-us" className="mt-6 w-full" size="lg">
           Contact Us
         </Button>
       </div>
     </header>
+  );
+}
+
+function Chevron({ open }: { open?: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 12 12"
+      className={cn("h-2.5 w-2.5 text-stone-light transition-transform", open && "rotate-180")}
+      fill="none"
+    >
+      <path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
