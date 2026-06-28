@@ -13,26 +13,32 @@ export function CtaBand({
   secondary?: { label: string; href: string };
 }) {
   return (
-    <section className="bg-ink">
+    <section className="border-t border-white/[0.06] bg-base">
       <div className="container-page py-20 sm:py-24">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#2a2114] via-ink to-ink px-8 py-14 sm:px-14 sm:py-16">
-          <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-amber/20 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-24 -left-10 h-72 w-72 rounded-full bg-gold/10 blur-3xl" />
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0d0d0d] px-8 py-16 sm:px-14 sm:py-20">
+          <div className="pointer-events-none absolute -right-20 -top-24 h-80 w-80 rounded-full bg-amber/20 blur-[110px]" />
+          <div className="pointer-events-none absolute -bottom-28 -left-16 h-80 w-80 rounded-full bg-gold/10 blur-[110px]" />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.15]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
+              backgroundSize: "56px 56px",
+              maskImage: "radial-gradient(80% 80% at 50% 0%, black, transparent)",
+              WebkitMaskImage: "radial-gradient(80% 80% at 50% 0%, black, transparent)",
+            }}
+          />
           <div className="relative max-w-2xl">
-            <h2 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
+            <span className="label-mono text-amber">[ Get in touch ]</span>
+            <h2 className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.02em] text-white sm:text-5xl">
               {title}
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-white/70">{intro}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href={primary.href} size="lg">
+            <p className="mt-5 text-lg leading-relaxed text-stone">{intro}</p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Button href={primary.href} variant="primary" size="lg">
                 {primary.label}
               </Button>
-              <Button
-                href={secondary.href}
-                variant="ghost"
-                size="lg"
-                className="text-white ring-white/25 hover:bg-white/10 hover:ring-white/50"
-              >
+              <Button href={secondary.href} variant="ghost" size="lg">
                 {secondary.label}
               </Button>
             </div>

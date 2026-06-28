@@ -93,9 +93,9 @@ export default function TechnologyPage() {
         />
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {keyBenefits.map((b, i) => (
-            <div key={b.title} className="rounded-2xl border border-ink/8 bg-cream/60 p-8">
+            <div key={b.title} className="rounded-2xl border border-white/8 bg-cream/60 p-8">
               <span className="font-display text-5xl font-bold text-amber/30">0{i + 1}</span>
-              <h3 className="mt-4 text-xl font-semibold text-ink">{b.title}</h3>
+              <h3 className="mt-4 text-xl font-semibold text-white">{b.title}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-stone">{b.body}</p>
             </div>
           ))}
@@ -127,7 +127,7 @@ export default function TechnologyPage() {
       <Section tone="cream">
         <div className="max-w-2xl">
           <span className="eyebrow">In the race to achieve interbody fusion, material matters.</span>
-          <h2 className="mt-3 text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">
             Introducing the NITRO Family
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-stone">
@@ -140,8 +140,8 @@ export default function TechnologyPage() {
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {nitroFeatures.map((f) => (
-            <div key={f.title} className="rounded-2xl border border-ink/8 bg-white p-6 shadow-card">
-              <h3 className="font-display text-base font-semibold text-ink">{f.title}</h3>
+            <div key={f.title} className="rounded-2xl border border-white/8 bg-white/[0.03] p-6 shadow-card">
+              <h3 className="font-display text-base font-semibold text-white">{f.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-stone">{f.body}</p>
             </div>
           ))}

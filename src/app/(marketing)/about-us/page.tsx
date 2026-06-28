@@ -46,7 +46,7 @@ export default function AboutPage() {
               ["100+", "Patents"],
               ["1", "Exclusive global Si₃N₄ spine provider"],
             ].map(([v, l]) => (
-              <div key={l} className="rounded-2xl border border-ink/8 bg-cream/60 p-7">
+              <div key={l} className="rounded-2xl border border-white/8 bg-cream/60 p-7">
                 <p className="font-display text-4xl font-bold text-amber">{v}</p>
                 <p className="mt-1 text-sm text-stone">{l}</p>
               </div>
@@ -72,7 +72,7 @@ export default function AboutPage() {
       <Section tone="cream">
         <div className="mx-auto max-w-3xl text-center">
           <span className="eyebrow">Creating a Masterpiece</span>
-          <p className="mt-5 text-xl leading-relaxed text-ink sm:text-2xl">
+          <p className="mt-5 text-xl leading-relaxed text-white sm:text-2xl">
             The development process mirrors multidisciplinary mastery of
             renaissance to cubism era artists, blending innovation, precision, and
             collaborative artistry.
@@ -85,11 +85,11 @@ export default function AboutPage() {
         <SectionHeading eyebrow="Leadership" title="Executive Leadership" />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {leadership.map((leader) => (
-            <div key={leader.name} className="rounded-2xl border border-ink/8 bg-cream/50 p-6">
+            <div key={leader.name} className="rounded-2xl border border-white/8 bg-cream/50 p-6">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-ink font-display text-lg font-semibold text-amber">
                 {leader.name.split(" ").map((n) => n[0]).join("")}
               </div>
-              <h3 className="mt-4 font-display text-lg font-semibold text-ink">{leader.name}</h3>
+              <h3 className="mt-4 font-display text-lg font-semibold text-white">{leader.name}</h3>
               <p className="text-sm font-medium text-amber">{leader.title}</p>
               <p className="mt-2 text-sm leading-relaxed text-stone">{leader.note}</p>
             </div>

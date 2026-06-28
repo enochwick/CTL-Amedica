@@ -47,13 +47,13 @@ export default function NitroPage() {
         />
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => (
-            <div key={f.title} className="rounded-2xl border border-ink/8 bg-cream/60 p-7">
+            <div key={f.title} className="rounded-2xl border border-white/8 bg-cream/60 p-7">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber/15 text-amber">
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 2v6m0 0 3-3m-3 3L9 5M5 12H2m20 0h-3M12 22v-6m0 0 3 3m-3-3-3 3" />
                 </svg>
               </div>
-              <h3 className="mt-5 text-lg font-semibold text-ink">{f.title}</h3>
+              <h3 className="mt-5 text-lg font-semibold text-white">{f.title}</h3>
               <p className="mt-2.5 text-[15px] leading-relaxed text-stone">{f.body}</p>
             </div>
           ))}

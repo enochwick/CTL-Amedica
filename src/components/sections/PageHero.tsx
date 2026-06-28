@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LightTrails } from "@/components/ui/LightTrails";
 
 export function PageHero({
   eyebrow,
@@ -12,14 +13,14 @@ export function PageHero({
   breadcrumb?: { label: string; href: string }[];
 }) {
   return (
-    <section className="relative overflow-hidden bg-ink">
-      <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-amber/15 blur-[120px]" />
-      <div className="container-page relative py-20 sm:py-24">
+    <section className="relative overflow-hidden bg-base">
+      <LightTrails />
+      <div className="container-page relative py-24 sm:py-28">
         {breadcrumb && (
-          <nav className="mb-5 flex flex-wrap items-center gap-2 text-sm text-white/45">
+          <nav className="mb-6 flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-stone">
             {breadcrumb.map((b, i) => (
               <span key={b.href} className="flex items-center gap-2">
-                {i > 0 && <span className="text-white/25">/</span>}
+                {i > 0 && <span className="text-stone-light">/</span>}
                 <Link href={b.href} className="transition-colors hover:text-amber">
                   {b.label}
                 </Link>
@@ -28,15 +29,14 @@ export function PageHero({
           </nav>
         )}
         {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-        <h1 className="mt-3 max-w-3xl text-4xl font-semibold leading-[1.08] text-white sm:text-5xl">
+        <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-[1.0] tracking-[-0.03em] text-white sm:text-6xl">
           {title}
         </h1>
         {intro && (
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/70">
-            {intro}
-          </p>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-stone">{intro}</p>
         )}
       </div>
+      <div className="hairline" />
     </section>
   );
 }

@@ -4,7 +4,7 @@ import { footerNav, site } from "@/data/site";
 
 export function Footer() {
   return (
-    <footer className="bg-ink text-white/70">
+    <footer className="border-t border-white/10 bg-black text-white/70">
       <div className="container-page py-16">
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1.4fr]">
           {/* Brand + company description */}

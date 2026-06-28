@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading, ArrowRight } from "@/components/ui/Section";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { LightTrails } from "@/components/ui/LightTrails";
 import { categoryMeta, categoryOrder, productsByCategory } from "@/data/products";
 import { homeReferences } from "@/data/publications";
 
@@ -54,21 +55,20 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-ink">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -right-32 top-0 h-[520px] w-[520px] rounded-full bg-amber/20 blur-[120px]" />
-          <div className="absolute -left-20 bottom-0 h-[420px] w-[420px] rounded-full bg-gold/10 blur-[120px]" />
-        </div>
-        <div className="container-page relative py-24 sm:py-28 lg:py-36">
-          <div className="max-w-3xl animate-fade-up">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-white/80">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber" />
-              The world&apos;s exclusive provider of SILICON NITRIDE implants for spine
+      <section className="relative overflow-hidden bg-base">
+        <LightTrails />
+        <div className="container-page relative flex min-h-[82vh] flex-col justify-center py-24">
+          <div className="max-w-4xl animate-fade-up">
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.03] px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-stone">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber shadow-[0_0_8px_2px_rgba(255,177,0,0.6)]" />
+              Exclusive provider of Silicon Nitride implants for spine
             </span>
-            <h1 className="mt-6 text-4xl font-semibold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
-              Innovative Spine Surgery Solution
+            <h1 className="mt-7 text-5xl font-semibold leading-[0.95] tracking-[-0.04em] text-white sm:text-7xl lg:text-[5.5rem]">
+              Innovative Spine
+              <br />
+              <span className="text-amber">Surgery Solution</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-stone">
               CTL Amedica is a forward-thinking medical device design,
               development, and manufacturing company. We lead in medical device
               technologies with exclusive bioactive osteogenic materials and
@@ -77,21 +77,17 @@ export default function HomePage() {
               features designed to enhance patient outcomes.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Button href="/about-us" size="lg">
+              <Button href="/about-us" variant="secondary" size="lg">
                 Learn More
                 <ArrowRight />
               </Button>
-              <Button
-                href="/products"
-                variant="ghost"
-                size="lg"
-                className="text-white ring-white/25 hover:bg-white/10 hover:ring-white/50"
-              >
+              <Button href="/products" variant="ghost" size="lg">
                 Explore Products
               </Button>
             </div>
           </div>
         </div>
+        <div className="hairline" />
       </section>
 
       {/* ── Why Choose Us ── */}
@@ -105,12 +101,12 @@ export default function HomePage() {
           {whyChooseUs.map((item, i) => (
             <div
               key={item.title}
-              className="group rounded-2xl border border-ink/8 bg-cream/60 p-7 transition-colors hover:border-amber/40"
+              className="group rounded-2xl border border-white/8 bg-cream/60 p-7 transition-colors hover:border-amber/40"
             >
               <span className="font-display text-4xl font-bold text-amber/30">
                 0{i + 1}
               </span>
-              <h3 className="mt-3 text-lg font-semibold text-ink">{item.title}</h3>
+              <h3 className="mt-3 text-lg font-semibold text-white">{item.title}</h3>
               <p className="mt-2.5 text-[14.5px] leading-relaxed text-stone">
                 {item.body}
               </p>
@@ -169,17 +165,17 @@ export default function HomePage() {
           {stats.map((s) => (
             <div
               key={s.eyebrow}
-              className="rounded-2xl border border-ink/8 bg-white p-8 shadow-card"
+              className="rounded-2xl border border-white/8 bg-white/[0.03] p-8 shadow-card"
             >
               <span className="text-xs font-semibold uppercase tracking-widest text-amber">
                 {s.eyebrow}
               </span>
-              <p className="mt-3 font-display text-4xl font-bold text-ink">{s.value}</p>
+              <p className="mt-3 font-display text-4xl font-bold text-white">{s.value}</p>
               <p className="mt-3 text-[15px] leading-relaxed text-stone">{s.body}</p>
             </div>
           ))}
         </div>
-        <ol className="mt-10 space-y-1.5 border-t border-ink/10 pt-6 text-xs leading-relaxed text-stone-light">
+        <ol className="mt-10 space-y-1.5 border-t border-white/10 pt-6 text-xs leading-relaxed text-stone-light">
           {homeReferences.map((ref, i) => (
             <li key={i}>
               {i + 1}. {ref}
@@ -193,7 +189,7 @@ export default function HomePage() {
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <span className="eyebrow">Research and Development at CTL Amedica</span>
-            <h2 className="mt-3 text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">
               Driving Innovation in Spine Care
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-stone">
@@ -218,7 +214,7 @@ export default function HomePage() {
               ["Patented", "Pedicle screw housing with strongest pull out force"],
               ["Award-Winning", "R&D team driving advancements in spinal care"],
             ].map(([t, d]) => (
-              <div key={t} className="rounded-2xl border border-ink/8 bg-cream/60 p-6">
+              <div key={t} className="rounded-2xl border border-white/8 bg-cream/60 p-6">
                 <p className="font-display text-xl font-semibold text-amber">{t}</p>
                 <p className="mt-2 text-sm leading-relaxed text-stone">{d}</p>
               </div>
@@ -244,12 +240,12 @@ export default function HomePage() {
               <Link
                 key={key}
                 href={`/products?category=${key}`}
-                className="group flex flex-col rounded-2xl border border-ink/8 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-amber/40 hover:shadow-card-hover"
+                className="group flex flex-col rounded-2xl border border-white/8 bg-white/[0.03] p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-amber/40 hover:shadow-card-hover"
               >
                 <span className="text-xs font-semibold uppercase tracking-widest text-amber">
                   {meta.segment}
                 </span>
-                <h3 className="mt-1 text-lg font-semibold text-ink">{meta.label}</h3>
+                <h3 className="mt-1 text-lg font-semibold text-white">{meta.label}</h3>
                 <ul className="mt-4 flex-1 space-y-1.5">
                   {items.slice(0, 4).map((p) => (
                     <li key={p.slug} className="text-sm text-stone">
@@ -262,7 +258,7 @@ export default function HomePage() {
                     </li>
                   )}
                 </ul>
-                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-ink">
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-white">
                   Browse
                   <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
                 </span>

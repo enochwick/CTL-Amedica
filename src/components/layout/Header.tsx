@@ -37,8 +37,8 @@ export function Header() {
       className={cn(
         "sticky top-0 z-50 w-full transition-colors duration-300",
         scrolled || mega
-          ? "bg-white/95 backdrop-blur shadow-[0_1px_0_rgba(30,24,16,0.08)]"
-          : "bg-white",
+          ? "border-b border-white/10 bg-base/85 backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent",
       )}
     >
       <div className="container-page flex h-20 items-center justify-between gap-6">
@@ -49,7 +49,7 @@ export function Header() {
             width={2048}
             height={427}
             priority
-            className="h-7 w-auto sm:h-8"
+            className="h-7 w-auto brightness-0 invert sm:h-[30px]"
           />
         </Link>
 
@@ -63,8 +63,8 @@ export function Header() {
                   onMouseEnter={() => setMega(true)}
                   onClick={() => setMega((m) => !m)}
                   className={cn(
-                    "flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                    mega ? "text-ink" : "text-slate hover:text-ink",
+                    "flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                    mega ? "text-white" : "text-stone hover:text-white",
                   )}
                   aria-expanded={mega}
                 >
@@ -75,26 +75,22 @@ export function Header() {
             }
             const children = "children" in item ? item.children : undefined;
             return (
-              <div
-                key={item.label}
-                className="group relative"
-                onMouseEnter={() => setMega(false)}
-              >
+              <div key={item.label} className="group relative" onMouseEnter={() => setMega(false)}>
                 <Link
                   href={item.href}
-                  className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-slate transition-colors hover:text-ink"
+                  className="flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-stone transition-colors hover:text-white"
                 >
                   {item.label}
                   {children && <Chevron />}
                 </Link>
                 {children && (
                   <div className="invisible absolute left-0 top-full min-w-[200px] translate-y-1 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                    <div className="overflow-hidden rounded-2xl border border-ink/5 bg-white p-2 shadow-card">
+                    <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0d0d0d] p-2 shadow-card">
                       {children.map((c) => (
                         <Link
                           key={c.label}
                           href={c.href}
-                          className="block rounded-xl px-3.5 py-2.5 text-sm text-slate transition-colors hover:bg-cream hover:text-ink"
+                          className="block rounded-xl px-3.5 py-2.5 text-sm text-stone transition-colors hover:bg-white/5 hover:text-white"
                         >
                           {c.label}
                         </Link>
@@ -116,14 +112,14 @@ export function Header() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen((o) => !o)}
-          className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full text-ink lg:hidden"
+          className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full text-white lg:hidden"
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
         >
           <div className="space-y-1.5">
-            <span className={cn("block h-0.5 w-6 bg-ink transition-transform", mobileOpen && "translate-y-2 rotate-45")} />
-            <span className={cn("block h-0.5 w-6 bg-ink transition-opacity", mobileOpen && "opacity-0")} />
-            <span className={cn("block h-0.5 w-6 bg-ink transition-transform", mobileOpen && "-translate-y-2 -rotate-45")} />
+            <span className={cn("block h-0.5 w-6 bg-white transition-transform", mobileOpen && "translate-y-2 rotate-45")} />
+            <span className={cn("block h-0.5 w-6 bg-white transition-opacity", mobileOpen && "opacity-0")} />
+            <span className={cn("block h-0.5 w-6 bg-white transition-transform", mobileOpen && "-translate-y-2 -rotate-45")} />
           </div>
         </button>
       </div>
@@ -132,7 +128,7 @@ export function Header() {
       <div
         onMouseEnter={() => setMega(true)}
         className={cn(
-          "absolute inset-x-0 top-full hidden origin-top border-t border-ink/5 bg-white shadow-[0_24px_48px_-12px_rgba(30,24,16,0.18)] transition-all duration-200 lg:block",
+          "absolute inset-x-0 top-full hidden origin-top border-y border-white/10 bg-[#0a0a0a]/95 backdrop-blur-xl transition-all duration-200 lg:block",
           mega ? "visible opacity-100" : "pointer-events-none invisible -translate-y-2 opacity-0",
         )}
       >
@@ -142,12 +138,12 @@ export function Header() {
               <Link
                 href={`/products?category=${group.key}`}
                 onClick={() => setMega(false)}
-                className="group flex items-baseline justify-between border-b border-ink/10 pb-2.5"
+                className="group flex items-baseline justify-between border-b border-white/10 pb-2.5"
               >
-                <span className="font-display text-sm font-semibold uppercase tracking-wide text-ink">
+                <span className="font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-amber">
                   {group.meta.label}
                 </span>
-                <span className="text-[10px] font-medium uppercase tracking-widest text-amber opacity-0 transition-opacity group-hover:opacity-100">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-stone opacity-0 transition-opacity group-hover:opacity-100">
                   View
                 </span>
               </Link>
@@ -157,16 +153,16 @@ export function Header() {
                     <Link
                       href={`/products/${p.slug}`}
                       onClick={() => setMega(false)}
-                      className="group flex items-center gap-2 rounded-lg px-2 py-1.5 -mx-2 text-[13.5px] text-slate transition-colors hover:bg-cream hover:text-ink"
+                      className="group -mx-2 flex items-center gap-2 rounded-lg px-2 py-1.5 text-[13.5px] text-stone transition-colors hover:bg-white/5 hover:text-white"
                     >
                       <span className="flex-1">{p.menuLabel}</span>
                       {p.nitro && (
-                        <span className="rounded bg-ink px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-amber">
+                        <span className="rounded bg-amber px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-black">
                           NITRO
                         </span>
                       )}
                       {!p.nitro && p.material === "Silicon Nitride" && (
-                        <span className="text-[10px] font-semibold text-amber/80">Si₃N₄</span>
+                        <span className="font-mono text-[10px] font-semibold text-amber/80">Si₃N₄</span>
                       )}
                     </Link>
                   </li>
@@ -179,17 +175,17 @@ export function Header() {
           <Link
             href="/nitro"
             onClick={() => setMega(false)}
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-ink p-6 text-white"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6"
           >
             <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-amber/25 blur-2xl transition-opacity group-hover:opacity-80" />
             <div className="relative">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber">
+              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-amber">
                 Exclusive Material
               </span>
-              <p className="mt-2 font-display text-2xl font-semibold leading-tight">
+              <p className="mt-2 font-display text-2xl font-semibold leading-tight text-white">
                 The NITRO Family
               </p>
-              <p className="mt-2 text-sm text-white/65">
+              <p className="mt-2 text-sm text-stone">
                 Silicon Nitride interbody fusion. In the race to achieve interbody fusion, material matters.
               </p>
             </div>
@@ -201,14 +197,12 @@ export function Header() {
             </span>
           </Link>
         </div>
-        <div className="border-t border-ink/5 bg-cream/60">
+        <div className="border-t border-white/[0.06] bg-white/[0.02]">
           <div className="container-page flex items-center justify-between py-3 text-sm">
-            <span className="text-stone">Browse the complete spinal portfolio</span>
-            <Link
-              href="/products"
-              onClick={() => setMega(false)}
-              className="font-medium text-ink link-underline"
-            >
+            <span className="font-mono text-[11px] uppercase tracking-wider text-stone">
+              Browse the complete spinal portfolio
+            </span>
+            <Link href="/products" onClick={() => setMega(false)} className="font-medium text-amber link-underline">
               View all products →
             </Link>
           </div>
@@ -218,16 +212,15 @@ export function Header() {
       {/* ─── Mobile menu ─── */}
       <div
         className={cn(
-          "fixed inset-0 top-20 z-40 overflow-y-auto bg-white px-5 pb-16 pt-4 transition-opacity duration-200 lg:hidden",
+          "fixed inset-0 top-20 z-40 overflow-y-auto bg-base px-5 pb-16 pt-4 transition-opacity duration-200 lg:hidden",
           mobileOpen ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >
-        <nav className="flex flex-col divide-y divide-ink/5">
-          {/* Product accordion */}
+        <nav className="flex flex-col divide-y divide-white/[0.06]">
           <div className="py-1">
             <button
               onClick={() => setMobileGroup((g) => (g === "products" ? null : "products"))}
-              className="flex w-full items-center justify-between py-3 text-left text-lg font-medium text-ink"
+              className="flex w-full items-center justify-between py-3 text-left text-lg font-medium text-white"
             >
               Product
               <Chevron open={mobileGroup === "products"} />
@@ -239,7 +232,7 @@ export function Header() {
                     <Link
                       href={`/products?category=${group.key}`}
                       onClick={() => setMobileOpen(false)}
-                      className="text-xs font-semibold uppercase tracking-widest text-amber"
+                      className="font-mono text-[11px] font-semibold uppercase tracking-[0.15em] text-amber"
                     >
                       {group.meta.label}
                     </Link>
@@ -249,7 +242,7 @@ export function Header() {
                           <Link
                             href={`/products/${p.slug}`}
                             onClick={() => setMobileOpen(false)}
-                            className="block py-1 text-sm text-slate"
+                            className="block py-1 text-sm text-stone"
                           >
                             {p.menuLabel}
                           </Link>
@@ -258,18 +251,13 @@ export function Header() {
                     </ul>
                   </div>
                 ))}
-                <Link
-                  href="/products"
-                  onClick={() => setMobileOpen(false)}
-                  className="inline-block text-sm font-medium text-ink link-underline"
-                >
+                <Link href="/products" onClick={() => setMobileOpen(false)} className="inline-block text-sm font-medium text-amber link-underline">
                   View all products →
                 </Link>
               </div>
             )}
           </div>
 
-          {/* Other items */}
           {mainNav
             .filter((i) => !("mega" in i && i.mega))
             .map((item) => (
@@ -277,7 +265,7 @@ export function Header() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="block py-3 text-lg font-medium text-ink"
+                className="block py-3 text-lg font-medium text-white"
               >
                 {item.label}
               </Link>
@@ -295,7 +283,7 @@ function Chevron({ open }: { open?: boolean }) {
   return (
     <svg
       viewBox="0 0 12 12"
-      className={cn("h-2.5 w-2.5 text-stone-light transition-transform", open && "rotate-180")}
+      className={cn("h-2.5 w-2.5 text-stone transition-transform", open && "rotate-180")}
       fill="none"
     >
       <path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />

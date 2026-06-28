@@ -56,7 +56,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           <div className="lg:sticky lg:top-28">
             <div className="relative aspect-square overflow-hidden rounded-3xl bg-gradient-to-br from-cream to-mist">
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="px-6 text-center font-display text-3xl font-semibold tracking-tight text-ink/15">
+                <span className="px-6 text-center font-display text-3xl font-semibold tracking-tight text-white/15">
                   {product.name}
                 </span>
               </div>
@@ -80,7 +80,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <span className="rounded-full bg-cream px-3 py-1 text-xs font-medium text-stone">
                 {product.segment} {product.procedure}
               </span>
-              <span className="rounded-full bg-amber/15 px-3 py-1 text-xs font-medium text-[#9a6b00]">
+              <span className="rounded-full bg-amber/15 px-3 py-1 text-xs font-medium text-amber">
                 {product.material}
               </span>
             </div>
@@ -91,7 +91,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               ))}
             </div>
 
-            <h2 className="mt-10 font-display text-sm font-semibold uppercase tracking-wider text-ink">
+            <h2 className="mt-10 font-display text-sm font-semibold uppercase tracking-wider text-white">
               Key Features
             </h2>
             <ul className="mt-4 space-y-3">
@@ -108,14 +108,14 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             </ul>
 
             {/* Specs */}
-            <dl className="mt-10 overflow-hidden rounded-2xl border border-ink/10">
+            <dl className="mt-10 overflow-hidden rounded-2xl border border-white/10">
               {specs.map(([k, v], i) => (
                 <div
                   key={k}
-                  className={`flex flex-col gap-1 p-5 sm:flex-row sm:items-center sm:justify-between ${i > 0 ? "border-t border-ink/8" : ""}`}
+                  className={`flex flex-col gap-1 p-5 sm:flex-row sm:items-center sm:justify-between ${i > 0 ? "border-t border-white/8" : ""}`}
                 >
                   <dt className="text-xs font-medium uppercase tracking-wider text-stone-light">{k}</dt>
-                  <dd className="font-display text-sm font-semibold text-ink sm:text-right">{v}</dd>
+                  <dd className="font-display text-sm font-semibold text-white sm:text-right">{v}</dd>
                 </div>
               ))}
             </dl>
@@ -136,10 +136,10 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       {related.length > 0 && (
         <Section tone="cream">
           <div className="flex items-end justify-between">
-            <h2 className="text-2xl font-semibold text-ink">More in {meta.label}</h2>
+            <h2 className="text-2xl font-semibold text-white">More in {meta.label}</h2>
             <Link
               href={`/products?category=${product.category}`}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-ink link-underline"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-white link-underline"
             >
               View all
               <ArrowRight />
@@ -160,7 +160,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
 function ResourceBtn({ label, sub }: { label: string; sub: string }) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-ink/10 bg-cream/50 px-4 py-3.5">
+    <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-cream/50 px-4 py-3.5">
       <span className="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-ink text-amber">
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -168,7 +168,7 @@ function ResourceBtn({ label, sub }: { label: string; sub: string }) {
         </svg>
       </span>
       <span className="min-w-0">
-        <span className="block truncate font-display text-sm font-semibold text-ink">{label}</span>
+        <span className="block truncate font-display text-sm font-semibold text-white">{label}</span>
         <span className="block text-xs text-stone-light">{sub}</span>
       </span>
     </div>

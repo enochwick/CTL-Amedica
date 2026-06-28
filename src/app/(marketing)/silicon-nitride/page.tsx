@@ -90,8 +90,8 @@ export default function SiliconNitridePage() {
 
         <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {properties.map((p) => (
-            <div key={p.title} className="rounded-2xl border border-ink/8 bg-cream/60 p-7">
-              <h3 className="text-lg font-semibold text-ink">{p.title}</h3>
+            <div key={p.title} className="rounded-2xl border border-white/8 bg-cream/60 p-7">
+              <h3 className="text-lg font-semibold text-white">{p.title}</h3>
               <p className="mt-2.5 text-[15px] leading-relaxed text-stone">{p.body}</p>
             </div>
           ))}
@@ -157,13 +157,13 @@ export default function SiliconNitridePage() {
         <SectionHeading eyebrow="The Science" title="Key Advancements in Si3N4 Technology" />
         <div className="mt-12 space-y-8">
           {advancements.map((a) => (
-            <div key={a.title} className="rounded-2xl border border-ink/8 bg-cream/40 p-8">
-              <h3 className="text-2xl font-semibold text-ink">{a.title}</h3>
+            <div key={a.title} className="rounded-2xl border border-white/8 bg-cream/40 p-8">
+              <h3 className="text-2xl font-semibold text-white">{a.title}</h3>
               <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-stone">{a.intro}</p>
               <div className="mt-6 grid gap-5 md:grid-cols-3">
                 {a.points.map(([t, d]) => (
-                  <div key={t} className="rounded-xl border border-ink/8 bg-white p-5">
-                    <h4 className="font-display text-base font-semibold text-ink">{t}</h4>
+                  <div key={t} className="rounded-xl border border-white/8 bg-white/[0.03] p-5">
+                    <h4 className="font-display text-base font-semibold text-white">{t}</h4>
                     <p className="mt-2 text-sm leading-relaxed text-stone">{d}</p>
                   </div>
                 ))}

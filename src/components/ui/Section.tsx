@@ -2,11 +2,12 @@ import { cn } from "@/lib/utils";
 
 type Tone = "white" | "cream" | "ink" | "mist";
 
+// All tones are dark surfaces — slight value shifts create rhythm.
 const tones: Record<Tone, string> = {
-  white: "bg-white text-ink",
-  cream: "bg-cream text-ink",
-  mist: "bg-mist text-ink",
-  ink: "bg-ink text-white",
+  white: "bg-base", // #0A0A0A
+  mist: "bg-[#0d0d0d]",
+  cream: "bg-[#0f0f0f]",
+  ink: "bg-black",
 };
 
 export function Section({
@@ -21,7 +22,14 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={cn("py-20 sm:py-28", tones[tone], className)}>
+    <section
+      id={id}
+      className={cn(
+        "border-t border-white/[0.06] py-20 sm:py-28",
+        tones[tone],
+        className,
+      )}
+    >
       <div className="container-page">{children}</div>
     </section>
   );
@@ -32,7 +40,6 @@ export function SectionHeading({
   title,
   intro,
   align = "left",
-  tone = "ink",
 }: {
   eyebrow?: string;
   title: React.ReactNode;
@@ -41,30 +48,13 @@ export function SectionHeading({
   tone?: "ink" | "white";
 }) {
   return (
-    <div
-      className={cn(
-        "max-w-2xl",
-        align === "center" && "mx-auto text-center",
-      )}
-    >
+    <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center")}>
       {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-      <h2
-        className={cn(
-          "mt-3 text-3xl font-semibold leading-tight sm:text-4xl",
-          tone === "white" ? "text-white" : "text-ink",
-        )}
-      >
+      <h2 className="mt-4 text-3xl font-semibold leading-[1.05] text-white sm:text-4xl lg:text-5xl">
         {title}
       </h2>
       {intro && (
-        <p
-          className={cn(
-            "mt-4 text-lg leading-relaxed",
-            tone === "white" ? "text-white/70" : "text-stone",
-          )}
-        >
-          {intro}
-        </p>
+        <p className="mt-5 text-lg leading-relaxed text-stone">{intro}</p>
       )}
     </div>
   );

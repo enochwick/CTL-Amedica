@@ -39,7 +39,7 @@ export default function ContactPage() {
           <div>
             <div className="grid gap-4 sm:grid-cols-2">
               {details.map((d) => (
-                <div key={d.label} className="rounded-2xl border border-ink/8 bg-cream/50 p-6">
+                <div key={d.label} className="rounded-2xl border border-white/8 bg-cream/50 p-6">
                   <p className="text-xs font-semibold uppercase tracking-wider text-amber">
                     {d.label}
                   </p>
@@ -49,7 +49,7 @@ export default function ContactPage() {
                         <a
                           key={line}
                           href={d.href}
-                          className="block font-display text-[15px] font-medium text-ink link-underline"
+                          className="block font-display text-[15px] font-medium text-white link-underline"
                         >
                           {line}
                         </a>
@@ -67,8 +67,8 @@ export default function ContactPage() {
             {/* Locations */}
             <div className="mt-6 grid gap-4">
               {site.locations.map((loc) => (
-                <div key={loc.label} className="rounded-2xl border border-ink/8 bg-white p-6">
-                  <p className="font-display text-sm font-semibold text-ink">{loc.label}</p>
+                <div key={loc.label} className="rounded-2xl border border-white/8 bg-white/[0.03] p-6">
+                  <p className="font-display text-sm font-semibold text-white">{loc.label}</p>
                   {loc.lines.map((line) => (
                     <p key={line} className="mt-1 text-sm text-stone">
                       {line}
@@ -80,8 +80,8 @@ export default function ContactPage() {
           </div>
 
           {/* Form */}
-          <div className="rounded-3xl border border-ink/8 bg-white p-7 shadow-card sm:p-9">
-            <h2 className="font-display text-2xl font-semibold text-ink">Send us a message</h2>
+          <div className="rounded-3xl border border-white/8 bg-white/[0.03] p-7 shadow-card sm:p-9">
+            <h2 className="font-display text-2xl font-semibold text-white">Send us a message</h2>
             <p className="mt-2 text-[15px] text-stone">
               Fill out the form below with your details, and we&apos;ll get back to
               you as soon as possible

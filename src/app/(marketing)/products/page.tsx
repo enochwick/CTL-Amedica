@@ -71,7 +71,7 @@ export default function ProductsPage({
                 "rounded-full px-4 py-2 text-sm font-medium transition-colors",
                 current === f.key
                   ? "bg-ink text-white"
-                  : "bg-cream text-slate hover:bg-ink/5 hover:text-ink",
+                  : "bg-cream text-slate hover:bg-ink/5 hover:text-white",
               )}
             >
               {f.label}
@@ -83,7 +83,7 @@ export default function ProductsPage({
           {grouped.map((group) => (
             <div key={group.key}>
               <div className="flex items-center gap-4">
-                <h2 className="font-display text-2xl font-semibold text-ink">{group.label}</h2>
+                <h2 className="font-display text-2xl font-semibold text-white">{group.label}</h2>
                 <span className="text-sm text-stone-light">{group.items.length}</span>
               </div>
               <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

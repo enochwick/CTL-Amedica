@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
-import { Section } from "@/components/ui/Section";
-import { PublicationTabs } from "@/components/sections/PublicationTabs";
+import { PublicationStack } from "@/components/sections/PublicationStack";
 import { CtaBand } from "@/components/sections/CtaBand";
 
 export const metadata: Metadata = {
@@ -23,9 +22,7 @@ export default function PublicationsPage() {
         ]}
       />
 
-      <Section tone="white">
-        <PublicationTabs />
-      </Section>
+      <PublicationStack />
 
       <CtaBand />
     </>

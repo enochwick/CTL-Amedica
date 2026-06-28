@@ -5,16 +5,19 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: #0a0a0a;
   }
   body {
-    @apply bg-white text-ink font-body antialiased;
+    @apply bg-base font-body text-slate antialiased;
+    -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display text-ink;
+    @apply font-display text-white;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
   ::selection {
-    @apply bg-amber/30;
+    @apply bg-amber/30 text-white;
   }
 }
 
@@ -22,10 +25,33 @@
   .container-page {
     @apply mx-auto w-full max-w-container px-5 sm:px-8;
   }
+  /* Monospace uppercase eyebrow label (awwwards style) */
   .eyebrow {
-    @apply inline-block text-xs font-semibold uppercase tracking-[0.18em] text-amber;
+    @apply inline-block font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-amber;
+  }
+  .label-mono {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-stone;
+  }
+  .hairline {
+    @apply h-px w-full bg-white/10;
   }
   .link-underline {
     @apply relative after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-300 hover:after:w-full;
+  }
+  /* Fine-bordered dark card */
+  .card-dark {
+    @apply rounded-2xl border border-white/10 bg-white/[0.03];
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* Cinematic amber light-trail backdrop */
+  .glow-amber {
+    background:
+      radial-gradient(60% 80% at 70% 30%, rgba(255, 177, 0, 0.18), transparent 60%),
+      radial-gradient(40% 60% at 20% 80%, rgba(249, 195, 73, 0.1), transparent 60%);
   }
 }

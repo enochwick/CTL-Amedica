@@ -28,10 +28,10 @@ export default function NewsPage() {
           {news.map((item) => (
             <article
               key={item.title}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-ink/8 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-amber/40 hover:shadow-card-hover"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-white/8 bg-white/[0.03] shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-amber/40 hover:shadow-card-hover"
             >
               <div className="relative flex aspect-[16/10] items-center justify-center bg-gradient-to-br from-cream to-mist">
-                <span className="font-display text-2xl font-bold tracking-tight text-ink/12">
+                <span className="font-display text-2xl font-bold tracking-tight text-white/12">
                   CTL Amedica
                 </span>
               </div>
@@ -39,13 +39,13 @@ export default function NewsPage() {
                 <time className="text-xs font-medium uppercase tracking-wider text-amber">
                   {item.date}
                 </time>
-                <h2 className="mt-3 font-display text-lg font-semibold leading-snug text-ink">
+                <h2 className="mt-3 font-display text-lg font-semibold leading-snug text-white">
                   {item.title}
                 </h2>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-stone">
                   {item.excerpt}
                 </p>
-                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-ink">
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-white">
                   Read More
                   <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
